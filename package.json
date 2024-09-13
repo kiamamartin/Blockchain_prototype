@@ -1,0 +1,29 @@
+{
+  "name": "bc-in-js",
+  "version": "1.0.0",
+  "description": "A blockchain prototype in js",
+  "main": "blockchain.js",
+  "scripts": {
+    "start": "nodemon blockchain.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "Blockchain_prototype"
+  },
+  "keywords": [
+    "blockchain",
+    "javascript",
+    "distributed",
+    "ledger"
+  ],
+  "author": "Martin Kiama",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
+    "express": "^4.21.0",
+    "nodemon": "^3.1.4",
+    "save-dev": "^0.0.1-security"
+  }
+}

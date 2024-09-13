@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blockchain Voting System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .key-display, .vote-section, .blockchain-display {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .blockchain-display {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Blockchain Voting System</h1>
+
+        <div class="key-display">
+            <h2>Generate Public/Private Key Pair</h2>
+            <button id="generateKeysBtn">Generate Key Pair</button>
+            <p><strong>Public Key:</strong> <span id="publicKey"></span></p>
+            <p><strong>Private Key:</strong> <span id="privateKey"></span></p>
+        </div>
+
+        <div class="vote-section">
+            <h2>Cast Your Vote</h2>
+            <label for="candidateSelect">Select Candidate:</label>
+            <select id="candidateSelect">
+                <option value="Alice">Alice</option>
+                <option value="Bob">Bob</option>
+                <option value="Charlie">Charlie</option>
+            </select>
+            <br><br>
+            <button id="castVoteBtn">Cast Vote</button>
+        </div>
+
+        <div class="blockchain-display">
+            <h2>Blockchain Data</h2>
+            <pre id="blockchainDisplay"></pre>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
