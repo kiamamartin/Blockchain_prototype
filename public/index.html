@@ -3,28 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Voting System</title>
-    <link rel="stylesheet" href="/style.css">
+    <title>Blockchain Voting System</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1>Blockchain Voting System</h1>
-        <form id="vote-form">
-            <label for="candidate">Choose your candidate:</label>
-            <select id="candidate" name="candidate">
-                <option value="">--Select a candidate--</option>
-                <option value="Alice">Alice</option>
-                <option value="Bob">Bob</option>
-                <option value="Charlie">Charlie</option>
-            </select>
-            <button type="submit">Submit Vote</button>
-            <div id="vote-message"></div>
-        </form>
-        <hr>
-        <h2>Blockchain Data</h2>
-        <button id="fetch-blockchain">Fetch Blockchain</button>
-        <pre id="blockchain-data"></pre>
+        <header>
+            <h1>Blockchain Voting System</h1>
+            <p>Secure and Transparent Voting</p>
+        </header>
+
+        <!-- Login Section -->
+        <section id="login-section" class="auth-section">
+            <h2>Login</h2>
+            <form id="login-form">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" placeholder="Enter username" required>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Enter password" required>
+                <button type="submit">Login</button>
+                <div id="login-message"></div>
+            </form>
+        </section>
+
+        <!-- Registration Section -->
+        <section id="register-section" class="auth-section" style="display:none;">
+            <h2>Register</h2>
+            <form id="register-form">
+                <label for="reg-username">Username:</label>
+                <input type="text" id="reg-username" name="username" placeholder="Choose a username" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                <label for="reg-password">Password:</label>
+                <input type="password" id="reg-password" name="password" placeholder="Create a password" required>
+                <button type="submit">Register</button>
+                <div id="register-message"></div>
+            </form>
+        </section>
+
+        <!-- Vote Section -->
+        <section id="vote-section" class="vote-section" style="display:none;">
+            <h2>Cast Your Vote</h2>
+            <form id="vote-form">
+                <label for="candidate">Choose your candidate:</label>
+                <select id="candidate" name="candidate">
+                    <option value="Alice">Alice</option>
+                    <option value="Bob">Bob</option>
+                </select>
+                <button type="submit">Submit Vote</button>
+                <div id="vote-message"></div>
+            </form>
+        </section>
     </div>
-    <script src="/script.js"></script>
+
+    <script src="script.js"></script>
 </body>
 </html>
