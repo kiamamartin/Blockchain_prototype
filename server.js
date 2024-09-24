@@ -38,10 +38,13 @@ app.use(express.static('public')); // Serve frontend static files
 const authenticateToken = (req, res, next) => {
     const authHeader = req.headers['authorization'];
     const token = authHeader && authHeader.split(' ')[1];
-    if (!token) return res.status(401).json({ message: 'Token required' });
-
+    if (!token) {
+        return res.status(401).json({ message: 'Token required' });
+    }
     jwt.verify(token, SECRET_KEY, (err, user) => {
-        if (err) return res.status(403).json({ message: 'Invalid token' });
+        if (err) {
+            return res.status(403).json({ message: 'Invalid token' });
+        }
         req.user = user;
         next();
     });
@@ -156,6 +159,44 @@ app.post('/vote', authenticateToken, (req, res) => {
 // Endpoint to fetch the blockchain
 app.get('/blockchain', (req, res) => {
     res.json(votingBlockchain);
+});
+
+// Election Management Routes
+// Endpoint to create a new election (protected)
+app.post('/elections/create', authenticateToken, (req, res) => {
+    const { title, description, start_date, end_date, status } = req.body;
+    
+    // Insert new election into the database
+    const query = 'INSERT INTO elections (title, description, start_date, end_date, status) VALUES (?, ?, ?, ?, ?)';
+    db.query(query, [title, description, start_date, end_date, status], (err, result) => {
+        if (err) {
+            return res.status(500).json({ success: false, message: 'Error creating election' });
+        }
+        res.json({ success: true, message: 'Election created successfully', electionId: result.insertId });
+    });
+});
+
+// Endpoint to get all elections (protected)
+app.get('/elections', authenticateToken, (req, res) => {
+    const query = 'SELECT * FROM elections';
+    db.query(query, (err, results) => {
+        if (err) {
+            return res.status(500).json({ success: false, message: 'Error fetching elections' });
+        }
+        res.json({ success: true, elections: results });
+    });
+});
+
+// Endpoint to get details of a specific election (protected)
+app.get('/elections/:id', authenticateToken, (req, res) => {
+    const electionId = req.params.id;
+    const query = 'SELECT * FROM elections WHERE id = ?';
+    db.query(query, [electionId], (err, results) => {
+        if (err || results.length === 0) {
+            return res.status(404).json({ success: false, message: 'Election not found' });
+        }
+        res.json({ success: true, election: results[0] });
+    });
 });
 
 // Start the server
